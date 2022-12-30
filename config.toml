@@ -69,4 +69,4 @@ PygmentsStyle = "monokai"
 
 
   [params.social]                 
-    a-github = "https://github.com/jacaranda-analytics/repositories"
+    a-github = "https://github.com/orgs/jacaranda-analytics/repositories"
