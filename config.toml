@@ -11,16 +11,16 @@ googleAnalytics = ""
 copyright = ""            
 
 defaultContentLanguage = "en"           
-
 PygmentsCodeFences = true
 PygmentsStyle = "monokai"
+
 
 [languages.en]
   languageCode = "en"
 
 [author]
   name = "Jacaranda Analytics"    
-  url = "https://jacaranda.ml"        
+  url = "/about/"        
 
 [sitemap]               
   changefreq = "weekly"

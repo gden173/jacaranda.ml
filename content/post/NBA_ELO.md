@@ -1,5 +1,7 @@
 ---
 title: "Extending the ELO Ranking System for the NBA"
+date: 2022-12-25
+author: Harry Goodman
 draft: false 
 tags: ["math"]
 categories: [ "math"]
@@ -22,12 +24,20 @@ Popularised by Chess, almost all sports that are zero-sum games have adopted the
 Suppose that player $$A$$ has rating $$R_A$$ and player $$B$$ has rating
 $$R_B$$. Then we may calculate the expected score, $$E_{A,B}$$ as:
 
-$$E_{A,B} = \left(1 + 10^{\frac{R_B-R_A}{M}}\right)^{-1}$$
+$$
+\begin{aligned}
+E_{A,B} = \left(1 + 10^{\frac{R_B-R_A}{M}}\right)^{-1}\tag{1}
+\end{aligned}
+$$
 
 Therefore, once players $$A$$ and $$B$$ have played and player $$A$$ obtains a
 score, $$S_{A,B}$$, we can update the ranking of player $$A$$ as:
 
-$$R'_A = R_A + K \cdot (S_A - E_A) $$
+$$
+\begin{aligned}
+R'_A &= R_A + K \cdot (S_A - E_A) \tag{2}\\
+\end{aligned}
+$$
 
 Here, $$M$$ and $$K$$ scale the expected score and the shift in score after a
 game respectively. 
@@ -39,21 +49,34 @@ its zero-sum nature.
 
 ## Scraping the Data
 
-To calculate the ELO scores, we will first have to obtain some data outlining the results of games. At a minimum, we require the outcome of each game. However, it may be interesting to investigate to incorporation of margin of win, turnover difference and field goal percentage into our ELO calculation. 
+To calculate the ELO scores, we will first have to obtain some data outlining
+the results of games. At a minimum, we require the outcome of each game.
+However, it may be interesting to investigate to incorporation of margin of
+win, turnover difference and field goal percentage into our ELO calculation. 
 
-A natural place to start is [Sports Reference](https://www.sports-reference.com/). Therefore, the below function can be used to extract a team's wins and losses from a specified season.
+A natural place to start is [Sports
+Reference](https://www.sports-reference.com/). Therefore, the below function
+can be used to extract a team's wins and losses from a specified season.
 
 <script 
 src="https://emgithub.com/embed-v2.js?target=https%3A%2F%2Fgithub.com%2Fjacaranda-analytics%2FNBA-ELO%2Fblob%2Fmain%2Fwordpress-examples%2Fget_team_stats_me.py&style=github-dark&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on&fetchFromJsDelivr=on.md">
 </script>
 
-The helper function can be found [here](https://github.com/jacaranda-analytics/NBA-ELO/blob/main/src/functions.py).
+The helper function can be found
+[here](https://github.com/jacaranda-analytics/NBA-ELO/blob/main/src/functions.py).
 
 For example, we could retrieve Houston's 1990 season results as follows:
 
 {{< gist gden173 2599bf566ce873fcf302b7bcb90b069b  >}}
 
-Since October 2022, Sports Reference have placed a limit rate on requests (twenty requests in a minute) which slows down accessing multiple years and teams. Thankfully the bulk of the data was scraped before this restriction. For all code relating to the web scraping found on [GitHub](https://github.com/jacaranda-analytics/NBA-ELO/blob/main/src/nba-extract.ipynb) under this website's organizational [page](https://github.com/jacaranda-analytics). Ultimately, we decided to save the game outcomes in decade blocks.
+Since October 2022, Sports Reference have placed a limit rate on requests
+(twenty requests in a minute) which slows down accessing multiple years and
+teams. Thankfully the bulk of the data was scraped before this restriction. For
+all code relating to the web scraping found on
+[GitHub](https://github.com/jacaranda-analytics/NBA-ELO/blob/main/src/nba-extract.ipynb)
+under this website's organizational
+[page](https://github.com/jacaranda-analytics). Ultimately, we decided to save
+the game outcomes in decade blocks.
 
 ## Calculating ELO
 
@@ -69,8 +92,6 @@ With standard ELO, we are free to choose K which essentially caps how many ELO p
 src="https://emgithub.com/embed-v2.js?target=https%3A%2F%2Fgithub.com%2Fjacaranda-analytics%2FNBA-ELO%2Fblob%2Fmain%2Fwordpress-examples%2Finitialise-elo.py&style=github-dark&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on&fetchFromJsDelivr=on.md">
 </script>
 
-
-INSERT PICTURE HERE
 
 ## Extending the Score Function
 
