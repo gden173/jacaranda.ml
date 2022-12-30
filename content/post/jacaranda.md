@@ -1,14 +1,16 @@
 ---
 title: "Jacaranda - PyTorch Hyper Tuning with Optuna"
 date: 2022-09-22T18:45:06+10:00
-draft: False
-mathjax: true
+draft: true
+categories: ["python", "packages", "pytorch", "kaggle"]
+tags:  ["python", "packages", "pytorch", "kaggle"]
+markup: mmark
 ---
 
 # Jacaranda - PyTorch Hyper Tuning with Optuna
 
 <div style="text-align: center;">
-<img src="../media/images/pytorch_optuna.png" alt="pytorch + optuna" width="700"/>
+<img src="/pytorch_optuna.png" alt="pytorch + optuna" width="700"/>
 </div>
 
 How many times have you looked through old repositories to find boiler-code for how you built your last MLP, CNN, VAE, etc. In this article, we showcase a Python package that leverages Optuna to build and tune PyTorch models.

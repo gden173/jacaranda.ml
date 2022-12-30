@@ -1,16 +1,16 @@
 ---
 title: "Extending the ELO Ranking System for the NBA"
 draft: false 
+tags: ["math"]
+categories: [ "math"]
 katex: true
-tags: ["preview", "math", "tag-6"]
-categories: ["docs", "math", "index"]
 markup: mmark
 ---
 
 # Extending the ELO Ranking System for the NBA
 
 <div style="text-align: center;">
-<img src="../media/images/nba_giannis.png" alt="NBA" width="700"/>
+<img src="/nba_giannis.png" alt="NBA" width="700"/>
 </div>
 
 The ELO ranking system is a method of ranking the relative skill of players in repeated zero-sum games. In this article we investigate extending the ELO system for the NBA to capture relative performance as well as the overall game outcome.
@@ -19,17 +19,23 @@ Popularised by Chess, almost all sports that are zero-sum games have adopted the
 
 ## Theory
 
-Suppose that player $$A$$ has rating $$R_A$$ and player $$B$$ has rating $$R_B$$. Then we may caculate the epected score, $$E_{A,B}$$ as:
+Suppose that player $$A$$ has rating $$R_A$$ and player $$B$$ has rating
+$$R_B$$. Then we may calculate the expected score, $$E_{A,B}$$ as:
 
 $$E_{A,B} = \left(1 + 10^{\frac{R_B-R_A}{M}}\right)^{-1}$$
 
-Therefore, once players $A$ and $B$ have played and player $A$ obtains a score, $S_{A,B}$, we can update the ranking of player $A$ as:
+Therefore, once players $$A$$ and $$B$$ have played and player $$A$$ obtains a
+score, $$S_{A,B}$$, we can update the ranking of player $$A$$ as:
 
 $$R'_A = R_A + K \cdot (S_A - E_A) $$
 
-Here, $M$ and $K$ scale the expected score and the shift in score after a game respectively. 
+Here, $$M$$ and $$K$$ scale the expected score and the shift in score after a
+game respectively. 
 
-Clearly, a starting point would be to have the score as binary, either a win or loss. However, if we can obtain further game statistcics we can extend our definition of score to better capture the result of the game, while preserving its zero-sum nature. 
+Clearly, a starting point would be to have the score as binary, either a win or
+loss. However, if we can obtain further game statistics  we can extend our
+definition of score to better capture the result of the game, while preserving
+its zero-sum nature. 
 
 ## Scraping the Data
 
@@ -44,8 +50,8 @@ src="https://emgithub.com/embed-v2.js?target=https%3A%2F%2Fgithub.com%2Fjacarand
 The helper function can be found [here](https://github.com/jacaranda-analytics/NBA-ELO/blob/main/src/functions.py).
 
 For example, we could retrieve Houston's 1990 season results as follows:
-<script src="https://gist.github.com/gden173/2599bf566ce873fcf302b7bcb90b069b.js"></script>
-{{< gist gden173   2599bf566ce873fcf302b7bcb90b069b >}}
+
+{{< gist gden173 2599bf566ce873fcf302b7bcb90b069b  >}}
 
 Since October 2022, Sports Reference have placed a limit rate on requests (twenty requests in a minute) which slows down accessing multiple years and teams. Thankfully the bulk of the data was scraped before this restriction. For all code relating to the web scraping found on [GitHub](https://github.com/jacaranda-analytics/NBA-ELO/blob/main/src/nba-extract.ipynb) under this website's organizational [page](https://github.com/jacaranda-analytics). Ultimately, we decided to save the game outcomes in decade blocks.
 

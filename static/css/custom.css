@@ -1,0 +1,42 @@
+body .gist .highlight td, body .gist .highlight tbody {
+    border: none;
+    background-color:#3b535d;
+    color: white
+}
+
+.post .post-content .highlight {
+    margin: none; 
+    border: none; 
+}
+
+
+body .gist .gist-data {
+    border: none;
+    display: block;
+    overflow-x: auto;
+    padding: 0;
+    color:    #293134;
+    background-color: #3b535d;
+}
+
+
+
+.hljs-style-github-dark pre code.hljs {
+    display: block;
+    overflow-x: auto;
+    padding: 0;
+    color:   #66747b;
+    background-color:  #293134;
+}
+
+.emgithub-file .code-area td.hljs-ln-line {
+    line-height: 21px;
+    font-size: 12px;
+    padding: 0;
+    font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+    border: none;
+    background-color: #293134;
+    color:   white;
+}
+
+
